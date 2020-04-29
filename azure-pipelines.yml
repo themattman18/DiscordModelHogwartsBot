@@ -19,4 +19,12 @@ steps:
     npm install
   displayName: 'npm install and build'
 
-  
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Visual Studio Enterprise(f54a0c2c-9cb6-4044-a0c4-3a0b5d4837fb)'
+    appType: 'webAppLinux'
+    WebAppName: 'housecup'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'NODE|12-lts'
+    StartupCommand: 'node index.js'
